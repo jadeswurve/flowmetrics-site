@@ -5,29 +5,32 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FlowMetrics™ — Revenue Recapture Systems</title>
   <meta name="description" content="FlowMetrics™ designs Revenue Recapture Systems that tighten inquiry-to-booking workflows, reduce leakage, and increase booked consults without increasing ad spend." />
-  <meta name="theme-color" content="#0b0f14" />
+  <meta name="theme-color" content="#071018" />
 
-  <!-- Optional: Google Font (clean + premium). Remove if you prefer system fonts. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg0:#06080b;
-      --bg1:#0a0f16;
-      --bg2:#0b1420;
+      --bg0:#04070b;
+      --bg1:#071018;
+      --bg2:#081a24;
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.085);
       --stroke: rgba(255,255,255,.12);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --muted2: rgba(255,255,255,.52);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.54);
+
       --accent:#6ee7d2;     /* mint/teal */
       --accent2:#67b5ff;    /* cool blue */
+      --accent3:#2ef0ff;    /* electric cyan */
+
       --warn:#ffcc66;
       --danger:#ff6b6b;
-      --shadow: 0 20px 80px rgba(0,0,0,.55);
+
+      --shadow: 0 20px 90px rgba(0,0,0,.60);
       --radius: 18px;
       --radius2: 26px;
       --max: 1120px;
@@ -39,18 +42,20 @@
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 70% 20%, rgba(110,231,210,.12), transparent 65%),
-        radial-gradient(900px 520px at 20% 80%, rgba(103,181,255,.10), transparent 60%),
-        radial-gradient(800px 600px at 70% 85%, rgba(255,255,255,.04), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg2));
       overflow-x:hidden;
+
+      /* richer base background (not flat black) */
+      background:
+        radial-gradient(1300px 700px at 72% 18%, rgba(46,240,255,.14), transparent 62%),
+        radial-gradient(1200px 680px at 14% 78%, rgba(110,231,210,.12), transparent 60%),
+        radial-gradient(800px 600px at 72% 82%, rgba(103,181,255,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg2));
     }
 
-    /* Subtle star dust */
+    /* film-grain + dust */
     body:before{
       content:"";
-      position:fixed; inset:0;
+      position:fixed; inset:-20px;
       pointer-events:none;
       background-image:
         radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.16) 50%, transparent 52%),
@@ -58,17 +63,57 @@
         radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.12) 50%, transparent 52%),
         radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.10) 50%, transparent 52%),
         radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,.10) 50%, transparent 52%),
-        radial-gradient(1px 1px at 40% 15%, rgba(255,255,255,.08) 50%, transparent 52%);
+        radial-gradient(1px 1px at 40% 15%, rgba(255,255,255,.08) 50%, transparent 52%),
+        radial-gradient(1px 1px at 22% 46%, rgba(255,255,255,.08) 50%, transparent 52%),
+        radial-gradient(1px 1px at 52% 92%, rgba(255,255,255,.07) 50%, transparent 52%);
       opacity:.55;
-      filter: blur(.2px);
+      filter: blur(.25px);
+      mix-blend-mode: screen;
+    }
+
+    /* electric upswing arc + subtle animated bloom */
+    .bgArc{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:-1;
+      opacity:1;
+    }
+    .bgArc:before{
+      content:"";
+      position:absolute;
+      left:-10%;
+      top:-12%;
+      width:130%;
+      height:120%;
+      background:
+        radial-gradient(900px 420px at 70% 28%, rgba(46,240,255,.12), transparent 60%),
+        radial-gradient(820px 520px at 64% 52%, rgba(103,181,255,.10), transparent 62%),
+        radial-gradient(700px 520px at 56% 62%, rgba(110,231,210,.08), transparent 64%);
+      filter: blur(2px);
+      animation: bloom 10s ease-in-out infinite alternate;
+    }
+    .bgArc svg{
+      position:absolute;
+      right:-60px;
+      top:-40px;
+      width:min(980px, 92vw);
+      height:auto;
+      filter: drop-shadow(0 0 24px rgba(46,240,255,.16))
+              drop-shadow(0 0 64px rgba(103,181,255,.14));
+      opacity:.9;
+    }
+    @keyframes bloom{
+      from{ transform: translateY(0px) scale(1); opacity:.85; }
+      to{ transform: translateY(14px) scale(1.02); opacity:1; }
     }
 
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+
     .topbar{
       position:sticky; top:0; z-index:30;
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(6,8,11,.75), rgba(6,8,11,.35));
+      background: linear-gradient(180deg, rgba(4,7,11,.78), rgba(4,7,11,.30));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .nav{
@@ -81,18 +126,18 @@
     }
     .mark{
       width:34px; height:34px; border-radius:10px;
-      background: radial-gradient(circle at 30% 30%, rgba(110,231,210,.9), rgba(103,181,255,.35) 60%, rgba(255,255,255,.06));
-      box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 12px 30px rgba(110,231,210,.12);
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,210,.95), rgba(103,181,255,.40) 60%, rgba(255,255,255,.06));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 14px 40px rgba(46,240,255,.10);
     }
-    .brand b{font-weight:800; letter-spacing:.2px}
+    .brand b{font-weight:900; letter-spacing:.2px}
     .brand small{
       display:block; margin-top:2px;
-      color:var(--muted2); font-weight:500; letter-spacing:.25px
+      color:var(--muted2); font-weight:600; letter-spacing:.25px
     }
 
     .navlinks{
       display:flex; gap:22px; align-items:center;
-      color:var(--muted); font-weight:600; font-size:14px;
+      color:var(--muted); font-weight:700; font-size:14px;
     }
     .navlinks a{opacity:.9}
     .navlinks a:hover{opacity:1; color:var(--text)}
@@ -106,7 +151,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
       color:var(--text);
-      font-weight:700;
+      font-weight:800;
       font-size:14px;
       cursor:pointer;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
@@ -115,12 +160,16 @@
     .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.085); border-color: rgba(255,255,255,.14)}
     .btn:active{transform: translateY(0px)}
     .btn.primary{
-      background: linear-gradient(180deg, rgba(110,231,210,.95), rgba(110,231,210,.75));
+      background: linear-gradient(180deg, rgba(110,231,210,.98), rgba(110,231,210,.74));
       color: rgba(5,10,12,.95);
-      border-color: rgba(110,231,210,.35);
-      box-shadow: 0 18px 50px rgba(110,231,210,.18);
+      border-color: rgba(110,231,210,.34);
+      box-shadow: 0 18px 60px rgba(110,231,210,.16);
     }
-    .btn.primary:hover{background: linear-gradient(180deg, rgba(110,231,210,1), rgba(110,231,210,.78))}
+    .btn.primary:hover{
+      background: linear-gradient(180deg, rgba(110,231,210,1), rgba(110,231,210,.78));
+      box-shadow: 0 22px 70px rgba(46,240,255,.14);
+    }
+
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px;
@@ -128,17 +177,14 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       color: var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:12px;
       letter-spacing:.2px;
     }
     .dot{width:7px; height:7px; border-radius:999px; background: var(--accent); box-shadow: 0 0 0 4px rgba(110,231,210,.12)}
 
     /* HERO */
-    .hero{
-      padding:42px 0 28px;
-      position:relative;
-    }
+    .hero{ padding:42px 0 28px; position:relative; }
     .heroGrid{
       display:grid;
       grid-template-columns: 1.18fr .82fr;
@@ -170,13 +216,13 @@
     .micro{
       margin-top:12px;
       color: var(--muted2);
-      font-weight:600;
+      font-weight:650;
       font-size: 12.5px;
     }
 
     .glass{
       border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.10);
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
@@ -190,8 +236,8 @@
     }
     .dashGlow{
       position:absolute; inset:-60px -80px auto auto;
-      width:240px; height:240px; border-radius:999px;
-      background: radial-gradient(circle, rgba(110,231,210,.18), transparent 62%);
+      width:260px; height:260px; border-radius:999px;
+      background: radial-gradient(circle, rgba(46,240,255,.14), rgba(110,231,210,.12), transparent 62%);
       filter: blur(2px);
     }
     .dashTop{
@@ -199,12 +245,12 @@
       margin-bottom:12px;
     }
     .dashTitle{
-      font-weight:800; letter-spacing:.2px;
+      font-weight:900; letter-spacing:.2px;
       color: rgba(255,255,255,.86);
       font-size:13px;
     }
     .dashTag{
-      font-size:11px; font-weight:800; color: rgba(255,255,255,.72);
+      font-size:11px; font-weight:900; color: rgba(255,255,255,.72);
       padding:7px 10px; border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
@@ -225,7 +271,7 @@
     .kpi small{
       display:block;
       color: var(--muted2);
-      font-weight:700;
+      font-weight:800;
       font-size:11.5px;
       letter-spacing:.2px;
       margin-bottom:6px;
@@ -234,32 +280,32 @@
       display:block;
       font-size:16px;
       letter-spacing:-.2px;
+      font-weight:900;
     }
     .kpi em{
       display:block;
       margin-top:6px;
       font-style:normal;
       color: rgba(110,231,210,.92);
-      font-weight:800;
+      font-weight:900;
       font-size:12px;
     }
 
-    /* SECTION */
     section{padding:34px 0}
     .sectionTitle{
       font-size: 20px;
       letter-spacing:-.4px;
       margin:0 0 8px;
-      font-weight:900;
+      font-weight:950;
     }
     .sectionLead{
       margin:0;
       color: var(--muted);
       line-height:1.6;
       max-width: 78ch;
+      font-weight:650;
     }
 
-    /* Tabs */
     .pillRow{
       margin-top:16px;
       display:grid;
@@ -278,17 +324,16 @@
       overflow:hidden;
       min-height: 104px;
     }
-    .tab b{display:block; font-weight:900; margin-bottom:8px}
-    .tab p{margin:0; color: var(--muted2); font-weight:600; line-height:1.5; font-size:13px}
+    .tab b{display:block; font-weight:950; margin-bottom:8px}
+    .tab p{margin:0; color: var(--muted2); font-weight:650; line-height:1.5; font-size:13px}
     .tab:after{
       content:"";
       position:absolute; left:16px; right:16px; bottom:14px; height:3px;
       border-radius:999px;
-      background: linear-gradient(90deg, rgba(110,231,210,.95), rgba(103,181,255,.65));
-      opacity:.85;
+      background: linear-gradient(90deg, rgba(110,231,210,.95), rgba(103,181,255,.70));
+      opacity:.9;
     }
 
-    /* Two-col blocks */
     .twoCol{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -304,12 +349,11 @@
       background: rgba(255,255,255,.055);
       border:1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(14px);
-      box-shadow: 0 16px 60px rgba(0,0,0,.35);
+      box-shadow: 0 16px 65px rgba(0,0,0,.35);
     }
-    .panel h3{margin:0 0 8px; font-size:16px; font-weight:900; letter-spacing:-.2px}
-    .panel p{margin:0; color:var(--muted); line-height:1.65; font-weight:600; font-size:13.5px}
+    .panel h3{margin:0 0 8px; font-size:16px; font-weight:950; letter-spacing:-.2px}
+    .panel p{margin:0; color:var(--muted); line-height:1.65; font-weight:650; font-size:13.5px}
 
-    /* Framework cards */
     .framework{
       margin-top:16px;
       display:grid;
@@ -324,11 +368,11 @@
       background: rgba(0,0,0,.22);
       border:1px solid rgba(255,255,255,.10);
     }
-    .step .num{color: rgba(110,231,210,.95); font-weight:900}
-    .step b{display:block; margin:6px 0 8px; font-size:15px; font-weight:900}
-    .step p{margin:0; color: var(--muted2); line-height:1.6; font-weight:600; font-size:13px}
+    .step .num{color: rgba(110,231,210,.95); font-weight:950}
+    .step b{display:block; margin:6px 0 8px; font-size:15px; font-weight:950}
+    .step p{margin:0; color: var(--muted2); line-height:1.6; font-weight:650; font-size:13px}
 
-    /* Pricing */
+    /* Math */
     .ctaBand{
       margin-top:18px;
       padding:18px;
@@ -356,39 +400,46 @@
       background: rgba(0,0,0,.22);
       border:1px solid rgba(255,255,255,.10);
     }
-    .metric small{display:block; color:var(--muted2); font-weight:800; font-size:11px; letter-spacing:.35px; text-transform:uppercase}
-    .metric b{display:block; margin-top:6px; font-size:22px; letter-spacing:-.6px}
+    .metric small{display:block; color:var(--muted2); font-weight:900; font-size:11px; letter-spacing:.35px; text-transform:uppercase}
+    .metric b{display:block; margin-top:6px; font-size:22px; letter-spacing:-.6px; font-weight:950}
 
-    .priceBox{
+    /* “Custom engagement” (replaces price box) */
+    .scopeBox{
       padding:16px;
       border-radius:20px;
       background: rgba(0,0,0,.25);
       border:1px solid rgba(255,255,255,.12);
     }
-    .price{
-      font-size:42px;
-      font-weight:950;
-      letter-spacing:-1.2px;
+    .scopeTitle{
       margin:0;
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.4px;
     }
-    .priceNote{
-      margin:6px 0 14px;
+    .scopeNote{
+      margin:8px 0 14px;
       color:var(--muted);
       line-height:1.55;
-      font-weight:600;
+      font-weight:650;
       font-size:13.5px;
+    }
+    .scopeMeta{
+      margin:0 0 14px;
+      color:rgba(255,255,255,.62);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.2px;
     }
 
     footer{
       padding:34px 0 44px;
       color: rgba(255,255,255,.55);
-      font-weight:600;
+      font-weight:650;
       font-size:12px;
       border-top:1px solid rgba(255,255,255,.06);
       margin-top: 22px;
     }
 
-    /* SVG chart styling helpers */
     .chartWrap{
       margin-top:10px;
       border-radius:18px;
@@ -398,7 +449,7 @@
     }
     .legend{
       display:flex; gap:14px; align-items:center; flex-wrap:wrap;
-      margin-top:8px; color:var(--muted2); font-weight:800; font-size:11.5px;
+      margin-top:8px; color:var(--muted2); font-weight:900; font-size:11.5px;
     }
     .key{display:flex; align-items:center; gap:8px}
     .swatch{width:18px; height:3px; border-radius:999px}
@@ -408,6 +459,45 @@
 </head>
 
 <body>
+  <!-- Electric background arc -->
+  <div class="bgArc" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="arc" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="rgba(103,181,255,.05)"/>
+          <stop offset=".35" stop-color="rgba(46,240,255,.42)"/>
+          <stop offset="1" stop-color="rgba(110,231,210,.10)"/>
+        </linearGradient>
+        <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feColorMatrix in="blur" type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 .9 0" result="glow"/>
+          <feMerge>
+            <feMergeNode in="glow"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- main upswing -->
+      <path d="M80,560 C260,420 420,360 560,320 C700,280 820,190 1120,90"
+            fill="none" stroke="url(#arc)" stroke-width="18" stroke-linecap="round" filter="url(#softGlow)"/>
+      <!-- inner bright core -->
+      <path d="M100,560 C280,430 430,370 570,330 C720,285 850,205 1120,110"
+            fill="none" stroke="rgba(46,240,255,.55)" stroke-width="5" stroke-linecap="round" />
+      <!-- sparkle nodes -->
+      <g fill="rgba(255,255,255,.55)">
+        <circle cx="560" cy="320" r="4"/>
+        <circle cx="740" cy="260" r="4"/>
+        <circle cx="900" cy="175" r="4"/>
+        <circle cx="1085" cy="105" r="5"/>
+      </g>
+    </svg>
+  </div>
+
   <!-- UPDATE THIS ONCE IF YOU EVER CHANGE YOUR BOOKING LINK -->
   <script>
     const BOOKING_URL = "https://calendar.google.com/appointments/schedules/AcZssZ21qECJXB-FtAfCDnwTCGraXGbkUXMh3y45Sg_aPKdywM8KW5K8DzbWBiqqUoKRsHd3qovemS8Q";
@@ -499,16 +589,7 @@
 
           <!-- Real chart with axes + labeled units -->
           <div class="chartWrap" role="img" aria-label="Booked consults per week before and after recapture systems">
-            <!--
-              Chart meaning:
-              X-axis: Weeks (1–8)
-              Y-axis: Booked consults per week
-              Two series:
-                - Before: baseline bookings
-                - After: bookings after recapture systems (lag then lift)
-            -->
             <svg viewBox="0 0 560 240" width="100%" height="auto" aria-hidden="true">
-              <!-- plot area -->
               <defs>
                 <linearGradient id="g1" x1="0" x2="1">
                   <stop offset="0" stop-color="rgba(110,231,210,.95)"/>
@@ -516,9 +597,7 @@
                 </linearGradient>
               </defs>
 
-              <!-- Background grid -->
               <rect x="52" y="18" width="486" height="176" rx="10" fill="rgba(0,0,0,.10)" stroke="rgba(255,255,255,.08)"/>
-              <!-- horizontal grid lines (5) -->
               <g stroke="rgba(255,255,255,.08)" stroke-width="1">
                 <line x1="52" y1="54" x2="538" y2="54"/>
                 <line x1="52" y1="90" x2="538" y2="90"/>
@@ -526,8 +605,7 @@
                 <line x1="52" y1="162" x2="538" y2="162"/>
               </g>
 
-              <!-- Y-axis labels -->
-              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="700">
+              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="800">
                 <text x="10" y="198">0</text>
                 <text x="10" y="166">10</text>
                 <text x="10" y="130">20</text>
@@ -536,8 +614,7 @@
                 <text x="10" y="22">50</text>
               </g>
 
-              <!-- X-axis labels -->
-              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="700">
+              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="800">
                 <text x="62"  y="224">W1</text>
                 <text x="125" y="224">W2</text>
                 <text x="188" y="224">W3</text>
@@ -548,35 +625,19 @@
                 <text x="503" y="224">W8</text>
               </g>
 
-              <!-- Axis titles -->
-              <g fill="rgba(255,255,255,.60)" font-size="11" font-weight="800" letter-spacing=".3">
+              <g fill="rgba(255,255,255,.60)" font-size="11" font-weight="900" letter-spacing=".3">
                 <text x="52" y="14">Booked consults / week</text>
                 <text x="438" y="236">Weeks</text>
               </g>
 
-              <!-- BEFORE line (baseline): values ~ 18,19,20,21,21,22,22,23 -->
-              <path d="M 62 131
-                       L 125 127
-                       L 188 122
-                       L 251 118
-                       L 314 118
-                       L 377 113
-                       L 440 113
-                       L 503 109"
+              <!-- BEFORE: ~ 18,19,20,21,21,22,22,23 -->
+              <path d="M 62 131 L 125 127 L 188 122 L 251 118 L 314 118 L 377 113 L 440 113 L 503 109"
                     fill="none" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round" />
 
-              <!-- AFTER line (lift after W3): values ~ 18,19,21,26,30,34,38,42 -->
-              <path d="M 62 131
-                       L 125 127
-                       L 188 118
-                       L 251 99
-                       L 314 90
-                       L 377 72
-                       L 440 54
-                       L 503 45"
+              <!-- AFTER: ~ 18,19,21,26,30,34,38,42 -->
+              <path d="M 62 131 L 125 127 L 188 118 L 251 99 L 314 90 L 377 72 L 440 54 L 503 45"
                     fill="none" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" />
 
-              <!-- points on AFTER -->
               <g fill="rgba(110,231,210,.95)" stroke="rgba(0,0,0,.45)" stroke-width="2">
                 <circle cx="62" cy="131" r="4.5"/>
                 <circle cx="125" cy="127" r="4.5"/>
@@ -640,10 +701,9 @@
         <div class="panel">
           <h3>Leakage snapshot (with real units)</h3>
           <p style="margin-bottom:10px">
-            This is an example of how leakage converts into lost consults when response time slips.
+            Example: how response time directly translates into lost consults.
           </p>
 
-          <!-- Simple bar chart with labels -->
           <div class="chartWrap" role="img" aria-label="Lost consults increase as response time increases">
             <svg viewBox="0 0 560 240" width="100%" height="auto" aria-hidden="true">
               <defs>
@@ -661,8 +721,7 @@
                 <line x1="52" y1="162" x2="538" y2="162"/>
               </g>
 
-              <!-- Y labels: lost consults / month -->
-              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="700">
+              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="800">
                 <text x="10" y="198">0</text>
                 <text x="10" y="166">10</text>
                 <text x="10" y="130">20</text>
@@ -671,20 +730,19 @@
                 <text x="10" y="22">50</text>
               </g>
 
-              <!-- X labels: response time buckets -->
-              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="800">
+              <g fill="rgba(255,255,255,.58)" font-size="11" font-weight="900">
                 <text x="78"  y="224">&lt;5 min</text>
                 <text x="190" y="224">15 min</text>
                 <text x="302" y="224">1 hour</text>
                 <text x="412" y="224">24+ hrs</text>
               </g>
 
-              <g fill="rgba(255,255,255,.60)" font-size="11" font-weight="800" letter-spacing=".3">
+              <g fill="rgba(255,255,255,.60)" font-size="11" font-weight="900" letter-spacing=".3">
                 <text x="52" y="14">Lost consults / month</text>
                 <text x="358" y="236">Average response time</text>
               </g>
 
-              <!-- Bars (lost consults/month): 6, 14, 26, 42 -->
+              <!-- Bars: 6, 14, 26, 42 -->
               <g fill="url(#bars)" stroke="rgba(255,255,255,.12)" stroke-width="1">
                 <rect x="86"  y="176" width="70" height="18" rx="8"/>
                 <rect x="198" y="150" width="70" height="44" rx="8"/>
@@ -692,8 +750,7 @@
                 <rect x="422" y="50"  width="70" height="144" rx="8"/>
               </g>
 
-              <!-- Values -->
-              <g fill="rgba(255,255,255,.78)" font-size="12" font-weight="900">
+              <g fill="rgba(255,255,255,.78)" font-size="12" font-weight="950">
                 <text x="111" y="171">6</text>
                 <text x="220" y="145">14</text>
                 <text x="332" y="99">26</text>
@@ -768,11 +825,13 @@
           </div>
         </div>
 
-        <div class="priceBox">
-          <p class="price">$45,000</p>
-          <p class="priceNote">
-            45-Day Executive Engagement. We map leakage, install the systems, and build reporting so performance holds.
-            If you have stable lead flow and want retained earnings efficiency, this is the lever.
+        <!-- Custom engagement box (no public pricing) -->
+        <div class="scopeBox">
+          <p class="scopeTitle">45-Day Executive Engagement</p>
+          <p class="scopeMeta">Custom-scoped • Fixed-fee proposal • Built for clinics with stable lead flow</p>
+          <p class="scopeNote">
+            Every engagement is tailored to your inquiry volume, team structure, and operational complexity.
+            After the Executive Diagnostic, we provide a clear scope, timeline, and fixed-fee proposal.
           </p>
           <button class="btn primary" style="width:100%" onclick="goBook()">Schedule Executive Diagnostic</button>
         </div>
