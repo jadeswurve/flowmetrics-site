@@ -8,20 +8,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f7f6f2;
       --surface: #efede6;
+      --surface-2: rgba(255,255,255,0.58);
       --text: #171717;
-      --muted: #5c5c5c;
+      --muted: #5f5a52;
       --line: #d9d4ca;
       --button: #1c1c1c;
       --button-text: #ffffff;
       --max: 1180px;
+      --shadow: 0 24px 80px rgba(0,0,0,0.06);
+      --radius: 28px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -39,7 +42,10 @@
       height: auto;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .wrap {
       width: min(var(--max), calc(100% - 40px));
@@ -48,7 +54,7 @@
 
     .eyebrow {
       font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 16px;
@@ -64,12 +70,12 @@
     }
 
     h1 {
-      font-size: clamp(44px, 7vw, 82px);
-      max-width: 8.5ch;
+      font-size: clamp(48px, 7vw, 86px);
+      max-width: 8.2ch;
     }
 
     h2 {
-      font-size: clamp(30px, 4vw, 48px);
+      font-size: clamp(32px, 4.3vw, 50px);
       max-width: 12ch;
     }
 
@@ -99,11 +105,11 @@
       min-height: 50px;
       padding: 0 22px;
       border: 1px solid var(--button);
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 600;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
     }
 
     .button.primary {
@@ -121,14 +127,14 @@
     }
 
     header.hero {
-      padding: 40px 0 34px;
+      padding: 36px 0 44px;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 34px;
+      margin-bottom: 38px;
       padding-bottom: 18px;
       border-bottom: 1px solid rgba(23,23,23,0.08);
     }
@@ -151,13 +157,13 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 54px;
-      align-items: end;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 58px;
+      align-items: center;
     }
 
     .hero-copy {
-      padding: 32px 0 26px;
+      padding: 24px 0 18px;
     }
 
     .hero-copy p + p {
@@ -166,11 +172,11 @@
 
     .hero-image {
       position: relative;
-      min-height: 720px;
+      min-height: 740px;
       overflow: hidden;
-      border-radius: 28px;
+      border-radius: var(--radius);
       background: linear-gradient(180deg, #e9e8e2 0%, #dedcd4 100%);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow);
     }
 
     .hero-image img {
@@ -183,13 +189,13 @@
     }
 
     section {
-      padding: 96px 0;
+      padding: 92px 0;
     }
 
     .center-intro {
       text-align: center;
-      padding-top: 70px;
-      padding-bottom: 40px;
+      padding-top: 64px;
+      padding-bottom: 34px;
     }
 
     .center-intro h2 {
@@ -214,11 +220,11 @@
     }
 
     .focus-card {
-      padding: 28px;
-      background: rgba(255,255,255,0.55);
+      padding: 30px;
+      background: var(--surface-2);
       border: 1px solid var(--line);
       border-radius: 22px;
-      min-height: 120px;
+      min-height: 140px;
     }
 
     .focus-card h3 {
@@ -237,44 +243,32 @@
     .split {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
-      gap: 54px;
+      gap: 58px;
       align-items: center;
     }
 
     .split.reverse {
-      grid-template-columns: 1fr 0.9fr;
+      grid-template-columns: 0.92fr 1.08fr;
+      align-items: start;
     }
 
-    .image-panel {
-      overflow: hidden;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #e7e5dd 0%, #d9d6cc 100%);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.05);
-    }
-
-    .image-panel.tall {
-      min-height: 620px;
-    }
-
-    .image-panel.tall img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+    .intro-copy {
+      max-width: 30ch;
     }
 
     .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 30px;
+      margin-top: 0;
     }
 
     .step {
       padding: 28px;
       border-radius: 22px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.52);
+      min-height: 220px;
     }
 
     .step-number {
@@ -295,8 +289,26 @@
       letter-spacing: -0.02em;
     }
 
+    .image-panel {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #e7e5dd 0%, #d9d6cc 100%);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.05);
+    }
+
+    .image-panel.tall {
+      min-height: 640px;
+    }
+
+    .image-panel.tall img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
     .cta-box {
-      padding: 52px;
+      padding: 56px;
       border-radius: 30px;
       background: #ece8de;
       border: 1px solid var(--line);
@@ -332,6 +344,7 @@
       overflow: hidden;
       border-radius: 22px;
       background: #e8e5dc;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.04);
     }
 
     .footer-portrait img {
@@ -370,6 +383,7 @@
 
     @media (max-width: 980px) {
       header.hero { padding-top: 24px; }
+
       .hero-grid,
       .split,
       .split.reverse,
@@ -391,15 +405,40 @@
     }
 
     @media (max-width: 640px) {
-      .wrap { width: min(var(--max), calc(100% - 24px)); }
-      .topbar { margin-bottom: 20px; }
-      .hero-copy { padding: 10px 0 0; }
+      .wrap {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .topbar {
+        margin-bottom: 20px;
+      }
+
+      .hero-copy {
+        padding: 10px 0 0;
+      }
+
       .hero-image,
-      .image-panel.tall { min-height: 420px; border-radius: 22px; }
-      section { padding: 74px 0; }
-      .cta-box { padding: 34px 22px; border-radius: 24px; }
-      .focus-card, .step { padding: 22px; }
-      p, .lead { font-size: 17px; }
+      .image-panel.tall {
+        min-height: 420px;
+        border-radius: 22px;
+      }
+
+      section {
+        padding: 74px 0;
+      }
+
+      .cta-box {
+        padding: 34px 22px;
+        border-radius: 24px;
+      }
+
+      .focus-card, .step {
+        padding: 22px;
+      }
+
+      p, .lead {
+        font-size: 17px;
+      }
     }
   </style>
 </head>
@@ -469,25 +508,27 @@
 
   <section>
     <div class="wrap split reverse">
-      <div>
+      <div class="intro-copy">
         <div class="eyebrow">Approach</div>
         <h2>A structured approach to refinement.</h2>
-        <div class="steps">
-          <div class="step">
-            <span class="step-number">Step 01</span>
-            <h3>Diagnostic</h3>
-            <p>Map the current flow, identify where opportunity exists, and understand how demand is being handled today.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">Step 02</span>
-            <h3>Prioritization</h3>
-            <p>Isolate the changes most likely to improve booked revenue without adding unnecessary operational complexity.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">Step 03</span>
-            <h3>Implementation</h3>
-            <p>Strengthen response systems, follow-up structure, and intake mechanics so more demand converts.</p>
-          </div>
+        <p class="lead" style="margin-top: 18px;">The goal is not to add complexity. It is to identify where value already exists, prioritize what matters, and tighten the system around it.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">Step 01</span>
+          <h3>Diagnostic</h3>
+          <p>Map the current flow, identify where opportunity exists, and understand how demand is being handled today.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">Step 02</span>
+          <h3>Prioritization</h3>
+          <p>Isolate the changes most likely to improve booked revenue without adding unnecessary operational complexity.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">Step 03</span>
+          <h3>Implementation</h3>
+          <p>Strengthen response systems, follow-up structure, and intake mechanics so more demand converts.</p>
         </div>
       </div>
     </div>
