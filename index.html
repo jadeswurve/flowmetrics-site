@@ -1,582 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlowMetrics</title>
-  <meta name="description" content="FlowMetrics helps aesthetic clinics improve inquiry-to-booking conversion and capture more value from existing demand." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #f7f6f2;
-      --surface: #efede6;
-      --surface-2: rgba(255,255,255,0.58);
-      --text: #171717;
-      --muted: #5f5a52;
-      --line: #d9d4ca;
-      --button: #1c1c1c;
-      --button-text: #ffffff;
-      --max: 1180px;
-      --shadow: 0 24px 80px rgba(0,0,0,0.06);
-      --radius: 28px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    h1, h2 {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
-    }
-
-    h1 {
-      font-size: clamp(48px, 7vw, 86px);
-      max-width: 8.2ch;
-    }
-
-    h2 {
-      font-size: clamp(32px, 4.3vw, 50px);
-      max-width: 12ch;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.72;
-    }
-
-    .lead {
-      font-size: 20px;
-      max-width: 34ch;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 22px;
-      border: 1px solid var(--button);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-    }
-
-    .button.primary {
-      background: var(--button);
-      color: var(--button-text);
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--button);
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-    }
-
-    header.hero {
-      padding: 36px 0 44px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 38px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(23,23,23,0.08);
-    }
-
-    .brand {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .brand small {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      gap: 58px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      padding: 24px 0 18px;
-    }
-
-    .hero-copy p + p {
-      margin-top: 18px;
-    }
-
-    .hero-image {
-      position: relative;
-      min-height: 740px;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, #e9e8e2 0%, #dedcd4 100%);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-image img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    section {
-      padding: 92px 0;
-    }
-
-    .center-intro {
-      text-align: center;
-      padding-top: 64px;
-      padding-bottom: 34px;
-    }
-
-    .center-intro h2 {
-      max-width: none;
-      margin: 0 auto 22px;
-    }
-
-    .center-intro p {
-      max-width: 46ch;
-      margin: 0 auto;
-    }
-
-    .center-intro p + p {
-      margin-top: 18px;
-    }
-
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 34px;
-    }
-
-    .focus-card {
-      padding: 30px;
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      min-height: 140px;
-    }
-
-    .focus-card h3 {
-      margin: 0 0 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 19px;
-      line-height: 1.35;
-      letter-spacing: -0.02em;
-    }
-
-    .focus-card p {
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 58px;
-      align-items: center;
-    }
-
-    .split.reverse {
-      grid-template-columns: 0.92fr 1.08fr;
-      align-items: start;
-    }
-
-    .intro-copy {
-      max-width: 30ch;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 0;
-    }
-
-    .step {
-      padding: 28px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.52);
-      min-height: 220px;
-    }
-
-    .step-number {
-      display: inline-block;
-      margin-bottom: 14px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .step h3 {
-      margin: 0 0 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 19px;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-    }
-
-    .image-panel {
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, #e7e5dd 0%, #d9d6cc 100%);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.05);
-    }
-
-    .image-panel.tall {
-      min-height: 640px;
-    }
-
-    .image-panel.tall img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .cta-box {
-      padding: 56px;
-      border-radius: 30px;
-      background: #ece8de;
-      border: 1px solid var(--line);
-      text-align: center;
-    }
-
-    .cta-box h2 {
-      max-width: none;
-      margin: 0 auto 18px;
-    }
-
-    .cta-box p {
-      max-width: 38ch;
-      margin: 0 auto;
-    }
-
-    footer {
-      padding: 28px 0 42px;
-    }
-
-    .footer-shell {
-      border-top: 1px solid rgba(23,23,23,0.08);
-      padding-top: 28px;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .footer-portrait {
-      width: 160px;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-radius: 22px;
-      background: #e8e5dc;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.04);
-    }
-
-    .footer-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .footer-copy {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 32px;
-      justify-content: space-between;
-      align-items: end;
-    }
-
-    .footer-copy strong {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-copy p {
-      font-size: 15px;
-      max-width: 38ch;
-    }
-
-    .footer-links {
-      text-align: right;
-      font-size: 14px;
-      line-height: 1.9;
-      color: var(--muted);
-    }
-
-    @media (max-width: 980px) {
-      header.hero { padding-top: 24px; }
-
-      .hero-grid,
-      .split,
-      .split.reverse,
-      .steps,
-      .focus-grid,
-      .footer-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-image,
-      .image-panel.tall {
-        min-height: 520px;
-      }
-
-      .footer-copy,
-      .footer-links {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(var(--max), calc(100% - 24px));
-      }
-
-      .topbar {
-        margin-bottom: 20px;
-      }
-
-      .hero-copy {
-        padding: 10px 0 0;
-      }
-
-      .hero-image,
-      .image-panel.tall {
-        min-height: 420px;
-        border-radius: 22px;
-      }
-
-      section {
-        padding: 74px 0;
-      }
-
-      .cta-box {
-        padding: 34px 22px;
-        border-radius: 24px;
-      }
-
-      .focus-card, .step {
-        padding: 22px;
-      }
-
-      p, .lead {
-        font-size: 17px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowMetrics | Excellence Uninterrupted</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9F8F6; color: #333; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    </style>
 </head>
-<body>
-  <header class="hero">
-    <div class="wrap">
-      <div class="topbar">
-        <div class="brand">
-          FlowMetrics
-          <small>Revenue Expansion from Existing Demand</small>
-        </div>
-      </div>
+<body class="antialiased">
 
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">For aesthetic clinics</div>
-          <h1>Revenue expansion from the demand you already have.</h1>
-          <p class="lead">FlowMetrics helps aesthetic clinics strengthen inquiry-to-booking conversion through faster response, structured follow-up, and clearer visibility.</p>
-          <p>Expansion does not always require more leads. Often, it begins with tighter handling of the demand already entering the system.</p>
-          <div class="button-row">
-            <a class="button primary" href="mailto:jade@flowmetrics.us">Request a Diagnostic Conversation</a>
-            <a class="button secondary" href="#focus">View Areas of Focus</a>
-          </div>
+    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+        <div class="text-xl tracking-widest font-light uppercase">FlowMetrics<span class="font-semibold text-stone-400">.us</span></div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-stone-500">
+            <a href="#methodology" class="hover:text-stone-800 transition">Methodology</a>
+            <a href="#audit" class="hover:text-stone-800 transition font-medium">Request Audit</a>
         </div>
+    </nav>
 
-        <div class="hero-image">
-          <img src="images/IMG_1809.PNG" alt="FlowMetrics founder portrait" />
+    <header class="relative max-w-7xl mx-auto px-8 py-20 md:py-32 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 space-y-8">
+            <h1 class="text-5xl md:text-7xl leading-tight">The Unseen Edge of <span class="italic text-stone-400">Excellence.</span></h1>
+            <p class="text-lg md:text-xl text-stone-600 leading-relaxed max-w-lg">
+                Your clinic is already exceptional. Your patient experience is premier. But in a multi-location operation, subtle gaps in the journey are inevitable. 
+                <br><br>
+                I identify these <span class="italic font-medium">Expansion Gaps</span>—recapturing the revenue already waiting within your current lead flow, without adding to your tech stack.
+            </p>
+            <div class="pt-4">
+                <a href="#audit" class="bg-stone-800 text-white px-10 py-4 rounded-sm hover:bg-stone-700 transition tracking-widest uppercase text-xs">Inquire for a Confidential Audit</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+        <div class="md:w-1/2">
+            <img src="hero-jade.png" alt="Jade - Architect of Clinical Flow" class="w-full h-auto object-cover grayscale-[20%] hover:grayscale-0 transition duration-700 shadow-2xl">
+        </div>
+    </header>
 
-  <section class="center-intro">
-    <div class="wrap">
-      <div class="eyebrow">Opportunity</div>
-      <h2>The opportunity within existing demand.</h2>
-      <p>Most clinics are already generating meaningful inquiry volume. The opportunity lies in how that demand is handled once it arrives.</p>
-      <p>Small inconsistencies in response timing, follow-up, or intake flow can quietly limit how much of that interest becomes booked treatment.</p>
-      <p>FlowMetrics focuses on strengthening that path so more of your existing demand converts.</p>
-    </div>
-  </section>
+    <section id="methodology" class="bg-white py-24 px-8 border-y border-stone-100">
+        <div class="max-w-5xl mx-auto text-center space-y-12">
+            <h2 class="text-4xl md:text-5xl">Expansion over <span class="italic">Repairs.</span></h2>
+            <div class="grid md:grid-cols-2 gap-16 text-left">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-semibold italic text-stone-500 underline decoration-stone-200 underline-offset-8">The Clinical Precision</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        At your scale, you don't have "problems to fix." You have a thriving patient ecosystem that has reached a new level of complexity. I bridge the space between initial inquiry and clinical chair—ensuring every patient journey is as smooth as your medical results.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-semibold italic text-stone-500 underline decoration-stone-200 underline-offset-8">The Recapture Model</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Our partnership is purely performance-aligned. Following a diagnostic audit, my implementations are compensated by a percentage of the verified revenue recaptured. No upfront marketing spend. No bloated tech stacking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="focus">
-    <div class="wrap">
-      <div class="eyebrow">Where we focus</div>
-      <h2>Precision inside the inquiry-to-booking path.</h2>
-      <div class="focus-grid">
-        <div class="focus-card">
-          <h3>Response timing and speed-to-lead</h3>
-          <p>Reduce delay at the first moment of intent and strengthen the quality of first contact.</p>
+    <section class="max-w-7xl mx-auto px-8 py-24 flex flex-col md:flex-row-reverse items-center gap-16">
+        <div class="md:w-1/2 space-y-6">
+            <h2 class="text-4xl md:text-5xl">Visibility to <span class="italic">Potential.</span></h2>
+            <p class="text-stone-600">Private Client Engagements are custom-tailored to the scale and geography of your clinical locations. We define the metrics, we smooth the gaps, and we share in the growth.</p>
+            <ul class="space-y-2 text-sm uppercase tracking-tighter text-stone-400 font-semibold">
+                <li>• Multi-Location Synergy</li>
+                <li>• Patient Nurture Optimization</li>
+                <li>• Performance-Based Retention</li>
+            </ul>
         </div>
-        <div class="focus-card">
-          <h3>Follow-up structure and consistency</h3>
-          <p>Create a disciplined cadence so warm interest is not left to chance or individual memory.</p>
+        <div class="md:w-1/2">
+            <img src="methodology-jade.png" alt="Clinical Precision" class="w-full max-w-md mx-auto grayscale shadow-xl border-8 border-white">
         </div>
-        <div class="focus-card">
-          <h3>Intake flow and booking experience</h3>
-          <p>Remove friction across forms, callbacks, confirmations, and the path to consult booking.</p>
-        </div>
-        <div class="focus-card">
-          <h3>Conversion visibility</h3>
-          <p>Clarify where demand enters, how it moves, and where additional value can be captured.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="wrap split reverse">
-      <div class="intro-copy">
-        <div class="eyebrow">Approach</div>
-        <h2>A structured approach to refinement.</h2>
-        <p class="lead" style="margin-top: 18px;">The goal is not to add complexity. It is to identify where value already exists, prioritize what matters, and tighten the system around it.</p>
-      </div>
+    <footer class="bg-[#1A1A1A] text-white py-20 px-8 mt-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center">
+            <div class="flex items-center space-x-6">
+                <img src="footer-jade.png" alt="Jade" class="w-20 h-20 rounded-full object-cover border-2 border-stone-700 grayscale">
+                <div>
+                    <p class="text-xl font-serif italic">Jade</p>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-stone-500">Architect of Clinical Flow</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <p class="text-stone-400 text-sm italic font-serif">Protecting the integrity of the patient journey at scale.</p>
+            </div>
+            <div class="flex flex-col md:items-end space-y-2 text-[10px] uppercase tracking-widest text-stone-500">
+                <a href="#" class="hover:text-white transition">Confidential Audit</a>
+                <a href="#" class="hover:text-white transition">Methodology</a>
+                <a href="#" class="hover:text-white transition">Legal & Definitions</a>
+                <p class="pt-4 opacity-30 text-[8px]">© 2026 FlowMetrics.us</p>
+            </div>
+        </div>
+    </footer>
 
-      <div class="steps">
-        <div class="step">
-          <span class="step-number">Step 01</span>
-          <h3>Diagnostic</h3>
-          <p>Map the current flow, identify where opportunity exists, and understand how demand is being handled today.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">Step 02</span>
-          <h3>Prioritization</h3>
-          <p>Isolate the changes most likely to improve booked revenue without adding unnecessary operational complexity.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">Step 03</span>
-          <h3>Implementation</h3>
-          <p>Strengthen response systems, follow-up structure, and intake mechanics so more demand converts.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split">
-      <div>
-        <div class="eyebrow">About</div>
-        <h2>A focus on refinement, not complexity.</h2>
-        <p class="lead">FlowMetrics is built on a simple premise: most clinics are closer to optimal performance than they realize.</p>
-        <p style="margin-top: 18px;">The goal is not to add more noise, more software, or more moving parts. It is to tighten what already exists so response becomes faster, follow-up becomes consistent, and more demand converts.</p>
-      </div>
-      <div class="image-panel tall">
-        <img src="images/IMG_1813.PNG" alt="Founder portrait in beige blazer" />
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="cta-box">
-        <div class="eyebrow">Next step</div>
-        <h2>Start with a conversation.</h2>
-        <p>If your clinic is generating inquiries but you suspect there is more value available within the current system, we can take a closer look.</p>
-        <div class="button-row" style="justify-content:center; margin-top: 28px;">
-          <a class="button primary" href="mailto:jade@flowmetrics.us">Book a Diagnostic Call</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap footer-shell">
-      <div class="footer-portrait">
-        <img src="images/IMG1834.PNG" alt="Founder portrait in black blazer" />
-      </div>
-      <div class="footer-copy">
-        <div>
-          <strong>FlowMetrics</strong>
-          <p>Revenue expansion from existing demand for aesthetic clinics ready to capture more from what they have already built.</p>
-        </div>
-        <div class="footer-links">
-          <div><a href="mailto:jade@flowmetrics.us">jade@flowmetrics.us</a></div>
-          <div><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></div>
-        </div>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
